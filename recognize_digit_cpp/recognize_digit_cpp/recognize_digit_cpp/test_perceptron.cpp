@@ -116,7 +116,7 @@ struct Number {
 	 }
  }
 
- void Recog::setNumber(int number)
+ void Recog::setNumber(int& number)
  {
 	 switch (number) {
 	 case 0:setNumber(num.num0); break;

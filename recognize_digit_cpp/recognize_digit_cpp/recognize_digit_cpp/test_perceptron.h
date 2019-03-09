@@ -28,7 +28,7 @@ public:
 	bool recognize(int **inp, int **loadweghts, int &rows, int &colums);
 	//установка входного параметра
 	void setNumber(const bool number[column][row]);
-	void setNumber(int number);
+	void setNumber(int& number);
 	//Увеличение весов
 	void increase();
 	//Уменьшение весов

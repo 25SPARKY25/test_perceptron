@@ -5,7 +5,7 @@ d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_di
 d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1179): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
 d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1202): warning C4965: неявная упаковка целого числа 0; используйте nullptr или явное приведение типов
 d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1220): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1248): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1444): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1250): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+d:\vs 2017 projects\mag_dip\recognize_digit_cpp\recognize_digit_cpp\recognize_digit_cpp\form1.h(1451): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   ArrayToFromFile.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   recognize_digit_cpp.vcxproj -> D:\VS 2017 projects\MAG_DIP\recognize_digit_cpp\recognize_digit_cpp\Debug\recognize_digit_cpp.exe

@@ -991,7 +991,7 @@ namespace CppCLR_WinformsProjekt {
 		///////////////////////////////////////////////////////////////////////////////////для единицы
 		in.open("weights_one.txt");//открываем файл для вывода инфы из файла в прогу	
 		if (!in.is_open()) // если файл не открыт
-			MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+			MessageBox::Show("Файл с весами для цифры \"1\" не найден!"); // сообщить об этом
 		else
 		{
 			string str;//переменная для записи числа()
@@ -1043,7 +1043,7 @@ namespace CppCLR_WinformsProjekt {
 		///////////////////////////////////////////////////////////////////////////////////для двойки
 		in.open("weights_two.txt");//открываем файл для вывода инфы из файла в прогу	
 		if (!in.is_open()) // если файл не открыт
-			MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+			MessageBox::Show("Файл с весами для цифры \"2\" не найден!"); // сообщить об этом
 		else
 		{
 			string str;//переменная для записи числа()
@@ -1094,7 +1094,7 @@ namespace CppCLR_WinformsProjekt {
 		///////////////////////////////////////////////////////////////////////////////////для четвёрки
 		in.open("weights_four.txt");//открываем файл для вывода инфы из файла в прогу	
 		if (!in.is_open()) // если файл не открыт
-			MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+			MessageBox::Show("Файл с весами для цифры \"4\" не найден!"); // сообщить об этом
 		else
 		{
 			string str;//переменная для записи числа()
@@ -1218,7 +1218,8 @@ namespace CppCLR_WinformsProjekt {
 	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 		unique_ptr<Recog> one(new Recog());
 		srand(time(0)); // автоматическая рандомизация
-		ArrayToFromFile *oneArrToFile = new ArrayToFromFile();
+		unique_ptr<ArrayToFromFile> oneArrToFile (new ArrayToFromFile());
+		//ArrayToFromFile *oneArrToFile = new ArrayToFromFile();
 		for (int i = 0; i < numberDataTraining; i++) 
 		{
 			int random_number = rand() % 10;
@@ -1242,11 +1243,13 @@ namespace CppCLR_WinformsProjekt {
 		}
 		delete[] arr;
 		one.reset();
+		oneArrToFile.reset();
 	}
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 	unique_ptr<Recog> two(new Recog());
 	srand(time(0)); // автоматическая рандомизация
-	ArrayToFromFile *twoArrToFile = new ArrayToFromFile();
+	unique_ptr<ArrayToFromFile> twoArrToFile(new ArrayToFromFile());
+	//ArrayToFromFile *twoArrToFile = new ArrayToFromFile();
 	for (int i = 0; i < numberDataTraining; i++)
 	{
 		int random_number = rand() % 10;
@@ -1270,6 +1273,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 	}
 	delete[] arr;
 	two.reset();
+	twoArrToFile.reset();
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	unique_ptr<Recog> one(new Recog());
@@ -1277,7 +1281,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 	in.open("weights_one.txt");//открываем файл для вывода инфы из файла в прогу	
 	string str;//переменная для записи числа()
 	if (!in.is_open()) // если файл не открыт
-		MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+		MessageBox::Show("Файл с весами для цифры \"1\" не найден!"); // сообщить об этом
 	else
 	{
 		char dig;//символ в файле
@@ -1333,7 +1337,8 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 				inparr[i][j] = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
 			}
 		}
-		Create_Image * one_im = new Create_Image(loadweights, inparr, x, y);
+		unique_ptr<Create_Image> one_im(new Create_Image(loadweights, inparr, x, y));
+		//Create_Image * one_im = new Create_Image(loadweights, inparr, x, y);
 		MemoryStream^ ms = gcnew MemoryStream(File::ReadAllBytes("test.bmp"));
 		Bitmap^ img = gcnew Bitmap(ms);
 		ms->Close();
@@ -1341,7 +1346,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		delete this->pictureBox1->Image;
 		pictureBox1->Image = img;
 		//delete img;
-		delete one_im;
+		//delete one_im;
 		Form1::Width = 1400;
 		label1->Text = Convert::ToString(one->recognize(inparr, loadweights, x, y));
 		label1->Visible = true;
@@ -1353,6 +1358,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 		delete[] inparr;
 		delete[] loadweights;
 		one.reset();
+		one_im.reset();
 	}
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -1360,7 +1366,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	ifstream in;
 	in.open("weights_two.txt");//открываем файл для вывода инфы из файла в прогу
 	if (!in.is_open()) // если файл не открыт
-		MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+		MessageBox::Show("Файл с весами для цифры \"2\" не найден!"); // сообщить об этом
 	else
 	{
 		char dig;//символ в файле
@@ -1416,8 +1422,8 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				inparr[i][j] = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
 			}
 		}
-
-		Create_Image * two_im = new Create_Image(loadweights, inparr, x, y);
+		unique_ptr<Create_Image> two_im(new Create_Image(loadweights, inparr, x, y));
+		//Create_Image * two_im = new Create_Image(loadweights, inparr, x, y);
 		MemoryStream^ ms = gcnew MemoryStream(File::ReadAllBytes("test.bmp"));
 		Bitmap^ img = gcnew Bitmap(ms);
 		ms->Close();
@@ -1425,7 +1431,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 		delete this->pictureBox1->Image;
 		pictureBox1->Image = img;
 		//delete img;
-		delete two_im;
+		//delete two_im;
 		Form1::Width = 1400;
 		label2->Text = Convert::ToString(two->recognize(inparr, loadweights, x, y));
 		label2->Visible = true;
@@ -1437,12 +1443,14 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 		delete[] inparr;
 		delete[] loadweights;
 		two.reset();
+		two_im.reset();
 	}
 }
 	private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
 		unique_ptr<Recog> four (new Recog());
 		srand(time(0)); // автоматическая рандомизация
-		ArrayToFromFile *threeArrToFile = new ArrayToFromFile();
+		unique_ptr<ArrayToFromFile> fourArrToFile (new ArrayToFromFile());
+		//ArrayToFromFile *threeArrToFile = new ArrayToFromFile();
 
 #if DEBUG == 1 
 		ofstream f;
@@ -1473,7 +1481,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 		}
 	}
 	int **arr = four->getWeights();
-	threeArrToFile->ArrayToFile(arr, 5, 3, "weights_four.txt");
+	fourArrToFile->ArrayToFile(arr, 5, 3, "weights_four.txt");
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -1484,6 +1492,8 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 	}
 	delete[] arr;
 	four.reset();
+	fourArrToFile.reset();
+
 	//four->~Recog();
 #if DEBUG == 1
 	f.close();
@@ -1495,7 +1505,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 	ifstream in;
 	in.open("weights_four.txt");//открываем файл для вывода инфы из файла в прогу
 	if (!in.is_open()) // если файл не открыт
-		MessageBox::Show("Файл с весами не может быть открыт!"); // сообщить об этом
+		MessageBox::Show("Файл с весами для цифры \"4\" не найден!"); // сообщить об этом
 	else
 	{
 		char dig;//символ в файле
@@ -1551,8 +1561,8 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 				inparr[i][j] = Convert::ToInt16(dataGridView1->Rows[i]->Cells[j]->Value);
 			}
 		}
-
-		Create_Image * four_im = new Create_Image(loadweights, inparr, x, y);
+		unique_ptr<Create_Image> four_im(new Create_Image(loadweights, inparr, x, y));
+		//Create_Image * four_im = new Create_Image(loadweights, inparr, x, y);
 		MemoryStream^ ms = gcnew MemoryStream(File::ReadAllBytes("test.bmp"));
 		Bitmap^ img = gcnew Bitmap(ms);
 		ms->Close();
@@ -1560,7 +1570,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 		delete this->pictureBox1->Image;
 		pictureBox1->Image = img;
 		//delete img;
-		delete four_im;
+		//delete four_im;
 		label3->Text = Convert::ToString(four->recognize(inparr, loadweights, x, y));
 		label3->Visible = true;
 		for (int i = 0; i < x; i++)
@@ -1571,6 +1581,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 		delete[] inparr;
 		delete[] loadweights;
 		four.reset();
+		four_im.reset();
 		Form1::Width = 1400;
 	}
 }

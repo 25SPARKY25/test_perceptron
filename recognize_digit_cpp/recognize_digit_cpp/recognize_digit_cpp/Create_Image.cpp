@@ -115,35 +115,35 @@
 	 {
 		 for (int j = 0; j < colums; j++)
 		 {
-			 PointF drawPoint = PointF(65.0F, cnt * 40 + 20.0F);
-			 PointF drawPoint_1 = PointF(265.0F, cnt * 40 + 20.0F);
+			 PointF drawPoint = PointF(265.0F, cnt * 40 + 20.0F);
+			 PointF drawPoint_1 = PointF(65.0F, cnt * 40 + 20.0F);
 			 g->DrawLine(BlackPen, 75, cnt * 40 + 20, 250, cnt * 40 + 20);//рисуем линию
 			 g->DrawLine(BlackPen, 250, cnt * 40 + 20, 550, 7 * 40 + 20);//рисуем линию
 			 ////////////////////////////////////////////////////////////////////////////////////////////
 			 if (digit_arr[i][j] == 0)
 			 {
-				 g->FillEllipse(WhiteBrush, 250, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
+				 g->FillEllipse(WhiteBrush, 50, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
 				 g->DrawString(Convert::ToString(digit_arr[i][j]), f_15, BlackBrush, drawPoint_1, sf);
 			 }
 			 else
 			 {
-				 g->FillEllipse(BlackBrush, 250, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
+				 g->FillEllipse(BlackBrush, 50, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
 				 g->DrawString(Convert::ToString(digit_arr[i][j]), f_15, WhiteBrush, drawPoint_1, sf);
 			 }
 			 ////////////////////////////////////////////////////////////////////////////////////////////
 			 if (load_arr[i][j] < 0)
 			 {				 
-				 g->FillEllipse(RedBrush, 50, cnt*40+5, 30, 30);//заливаем цветом окружность
+				 g->FillEllipse(RedBrush, 250, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
 				 g->DrawString( Convert::ToString(load_arr[i][j]), f_15, BlackBrush, drawPoint, sf);
 			 }
 			 else if (load_arr[i][j] == 0)
 			 {
-				 g->FillEllipse(YellowBrush, 50, cnt * 40 + 5, 30, 30);//заливаем цветом окружность			 
+				 g->FillEllipse(YellowBrush, 250, cnt * 40 + 5, 30, 30);//заливаем цветом окружность			 
 				 g->DrawString(Convert::ToString(load_arr[i][j]), f_15, BlackBrush, drawPoint, sf);
 			 }
 			 else
 			 {
-				 g->FillEllipse(GreenBrush, 50, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
+				 g->FillEllipse(GreenBrush, 250, cnt * 40 + 5, 30, 30);//заливаем цветом окружность
 				 g->DrawString(Convert::ToString(load_arr[i][j]), f_15, BlackBrush, drawPoint, sf);
 			 }
 			 cnt++;
